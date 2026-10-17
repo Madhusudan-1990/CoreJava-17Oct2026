@@ -12,3 +12,7 @@ bin/
 # Logs
 *.log
 logs/
+
+# Accidental ssh-keygen output
+Enter file in which to save the key*
+*.save

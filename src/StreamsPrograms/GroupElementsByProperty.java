@@ -11,7 +11,7 @@ public class GroupElementsByProperty {
 	{
 		List<String> fruits = Arrays.asList("apple", "ant", "banana", "avocado", "blueberry");
 		
-		Map<Character, List<String>> group = fruits.stream().collect(Collectors.groupingBy(s->s.charAt(0)));
+		Map<Character, List<String>> group = fruits.stream().collect(Collectors.groupingBy(s->s.charAt(2)));
 		
 		System.out.println(group);
 

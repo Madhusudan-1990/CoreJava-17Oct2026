@@ -40,7 +40,7 @@ public class GetTopNSalary {
 				                                new Employee2(70000),
 				                                new Employee2(60000));
 		
-    List<Employee2>topNSalary = empList.stream().sorted(Comparator.comparingDouble(Employee2::getEmpSalary).reversed()).	limit(3).collect(Collectors.toList());
+    List<Employee2>topNSalary = empList.stream().sorted(Comparator.comparingDouble(Employee2::getEmpSalary).reversed()).limit(3).collect(Collectors.toList());
     System.out.println(topNSalary);
 
 	}
