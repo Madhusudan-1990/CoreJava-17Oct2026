@@ -9,38 +9,37 @@ import java.util.stream.Collectors;
 
 public class StreamsFirstNonRepeatingCharacterUsingStreams {
 
-    public static void main(String[] args) {
+	  private static void findFirsNonRepeatingCharacter(String input) {
 
-        String input = "swiss";
+	        // Step 1: Count the occurrences of each character
+	        Map<Character, Long> occurrence = input.chars()
+	                .mapToObj(c -> (char) c)
+	                .collect(Collectors.groupingBy(
+	                        Function.identity(),
+	                        Collectors.counting()
+	                ));
 
-//        Character result =
-//                input.chars()
-//                     .mapToObj(c -> (char) c)
-//                     .collect(Collectors.groupingBy(
-//                         Function.identity(),
-//                         LinkedHashMap::new,
-//                         Collectors.counting()
-//                     ))
-//                     .entrySet()
-//                     .stream()
-//                     .filter(entry -> entry.getValue() == 1)
-//                     .map(Map.Entry::getKey)
-//                     .findFirst()
-//                     .orElse(null);
-//
-//        System.out.println(result);
-        
-        Map<Character, Long> occurance  = input.chars()
-        								.mapToObj(c->(char) c)
-        								.collect(Collectors
-        										.groupingBy(Function.identity(),Collectors.counting()));
-        
-			 Character nonRepeatedChar = occurance.entrySet().stream()
-						        	.filter(entry->entry.getValue()==1)
-						        	.map(entry->entry.getKey())
-						        	.findFirst()
-						        	.orElse(null);
-			 
-			 System.out.println(nonRepeatedChar);
-    }
+	        // Step 2: Traverse the original string to find
+	        // the first character whose count is 1
+	        Character firstNonOccurrence = input.chars()
+	                .mapToObj(c -> (char) c)
+	                .filter(ch -> occurrence.get(ch) == 1)
+	                .findFirst()
+	                .orElse(null);
+
+	        // Step 3: Print the result
+	        System.out.println("Input: " + input);
+	        System.out.println("First non-repeating character: "
+	                + firstNonOccurrence);
+	        System.out.println();
+	    }
+
+	    public static void main(String[] args) {
+
+	        findFirsNonRepeatingCharacter("swiss");
+	        findFirsNonRepeatingCharacter("sssiw");
+	        findFirsNonRepeatingCharacter("aabbcdde");
+	        findFirsNonRepeatingCharacter("aabbcc");
+	        findFirsNonRepeatingCharacter("aabbcde");
+	    }
 }

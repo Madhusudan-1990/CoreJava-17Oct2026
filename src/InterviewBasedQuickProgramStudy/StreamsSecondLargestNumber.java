@@ -10,9 +10,9 @@ public class StreamsSecondLargestNumber {
 
 	public static void main(String[] args) 
 	{
-		List<Integer> numbers = Arrays.asList(23,12,34,2,34,42,32);
+		List<Integer> numbers = Arrays.asList(23,12,34,2,34,42,42,32);
 		
-		int secondLargestNumber = numbers.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst().orElseThrow();
+		int secondLargestNumber = numbers.stream().distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst().orElseThrow();
 		System.out.println(secondLargestNumber);
 		
 		
